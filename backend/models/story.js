@@ -27,10 +27,10 @@ const StorySchema = new mongoose.Schema({
   timestamps: true
 });
 
+// Calculate word count before saving
 StorySchema.pre('save', function(next) {
   this.wordCount = this.content.split(/\s+/).filter(word => word.length > 0).length;
   next();
 });
-
 
 module.exports = mongoose.model('Story', StorySchema);
